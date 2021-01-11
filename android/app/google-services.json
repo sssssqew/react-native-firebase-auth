@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "757800810839",
+    "project_id": "simple-react-native-app-fda01",
+    "storage_bucket": "simple-react-native-app-fda01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757800810839:android:f21e22a98e2650b8e8a612",
+        "android_client_info": {
+          "package_name": "com.secondapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757800810839-t98iigdm5s3ln6eit55m7kabfnb1r0qf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcCOh702V4uC1bxBYUJ3KHQagYpmJg_68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757800810839-t98iigdm5s3ln6eit55m7kabfnb1r0qf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
