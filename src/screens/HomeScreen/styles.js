@@ -1,6 +1,47 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+  },
+  inputSection: {
+    width: '80%',
+    flexDirection: 'row',
+    marginBottom: 30,
+    marginTop: -10,
+  },
+  todoItem: {
+    flexDirection: 'row',
+    marginVertical: 5,
+    alignItems: 'center',
+  },
+  todoText: {
+    borderColor: '#afafaf',
+    paddingHorizontal: 5,
+    paddingVertical: 7,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginRight: 10,
+    minWidth: '50%',
+    textAlign: 'center',
+  },
+  contentContainerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: '#afafaf',
+    width: '80%',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginVertical: 20,
+    fontSize: 20,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -34,6 +75,7 @@ export default StyleSheet.create({
     width: 80,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 50,
   },
   buttonText: {
     color: 'white',
