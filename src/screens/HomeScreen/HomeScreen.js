@@ -22,6 +22,7 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
     console.log(doneState);
     database.ref('todos/').update({
       [id]: {
+        uid: firebase.auth().currentUser.uid,
         todoItem: name,
         done: !doneState,
       },
@@ -46,6 +47,7 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      uid: '',
       todos: {},
       presentToDo: '',
     };
@@ -61,8 +63,9 @@ class HomeScreen extends React.Component {
   };
 
   addNewTodo = () => {
-    console.log(this.state.presentToDo);
-    database.ref('todos/').push({
+    console.log(firebase.auth().currentUser.uid);
+    database.ref(`todos/`).push({
+      uid: firebase.auth().currentUser.uid,
       done: false,
       todoItem: this.state.presentToDo,
     });
@@ -77,11 +80,16 @@ class HomeScreen extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // 사용자가 데이터를 추가하는지 리스닝하다가 변경사항이 생기면 스냅샷을 던져주고 콜백이 실행된다
-        database.ref('todos/').on('value', (querySnapShot) => {
-          let data = querySnapShot.val() ? querySnapShot.val() : {};
-          let todoItems = {...data};
-          this.setState({todos: todoItems});
-        });
+        database
+          .ref('todos/')
+          .orderByChild('uid')
+          .equalTo(user.uid)
+          .on('value', (querySnapShot) => {
+            if (!querySnapShot) return;
+            let data = querySnapShot.val() ? querySnapShot.val() : {};
+            let todoItems = {...data};
+            this.setState({todos: todoItems});
+          });
       } else {
         console.log('Move to Login');
         console.log(user);
