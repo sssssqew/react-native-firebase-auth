@@ -61,7 +61,7 @@ class HomeScreen extends React.Component {
       done: false,
       todoItem: this.state.presentToDo,
     });
-    Alert.alert('Action!', 'A new To - do item was created');
+    Alert.alert('알림!', '새로운 할일이 추가되었어요 !');
     this.setState({presentToDo: ''});
   };
   // 사용자가 전체 목록을 전부 다 지울 일이 없을것 같다
@@ -118,7 +118,7 @@ class HomeScreen extends React.Component {
             <TextInput
               placeholderTextColor="white"
               underlineColorAndroid="white"
-              placeholder="Add new Todo"
+              placeholder="할일을 추가해주세요 ^^"
               value={this.state.presentToDo}
               style={styles.textInput}
               onSubmitEditing={this.addNewTodo}
