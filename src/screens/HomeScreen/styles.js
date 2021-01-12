@@ -12,11 +12,25 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 30,
     marginTop: -10,
+    justifyContent: 'flex-start',
+  },
+  textInput: {
+    width: 300,
+    borderWidth: 0,
+    borderColor: '#afafaf',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginVertical: 20,
+    fontSize: 20,
+    color: 'white',
+    alignItems: 'center',
   },
   todoItem: {
     flexDirection: 'row',
     marginVertical: 5,
     alignItems: 'center',
+    justifyContent: 'center',
+    width: 500,
   },
   todoText: {
     borderColor: '#afafaf',
@@ -30,18 +44,10 @@ export default StyleSheet.create({
   },
   contentContainerStyle: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     // justifyContent: 'center',
   },
-  textInput: {
-    borderWidth: 1,
-    borderColor: '#afafaf',
-    width: '80%',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginVertical: 20,
-    fontSize: 20,
-  },
+
   container: {
     flex: 1,
     alignItems: 'center',

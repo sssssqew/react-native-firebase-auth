@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
 import CheckBox from 'react-native-check-box';
 import styles from './styles';
@@ -52,15 +53,6 @@ class HomeScreen extends React.Component {
       presentToDo: '',
     };
   }
-  signOutUser = async () => {
-    console.log('logout button pushed !');
-    console.log(this.props);
-    try {
-      await firebase.auth().signOut();
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   addNewTodo = () => {
     console.log(firebase.auth().currentUser.uid);
@@ -72,9 +64,15 @@ class HomeScreen extends React.Component {
     Alert.alert('Action!', 'A new To - do item was created');
     this.setState({presentToDo: ''});
   };
-  clearAllTodos() {
-    database.ref('todos/').remove();
-  }
+  // 사용자가 전체 목록을 전부 다 지울 일이 없을것 같다
+  // clearAllTodos() {
+  //   const listOfUser = database
+  //     .ref('todos/')
+  //     .orderByChild('uid')
+  //     .equalTo(firebase.auth().currentUser.uid);
+  //   console.log(firebase.auth().currentUser.uid);
+  //   listOfUser.remove();
+  // }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -100,44 +98,49 @@ class HomeScreen extends React.Component {
 
   render() {
     let todosKeys = Object.keys(this.state.todos);
+    const screenHeight = Dimensions.get('window').height;
 
+    // stickyHeaderIndices : 스크롤뷰에서 고정할 컴포넌트
     return (
-      <>
-        <View style={styles.header}>
-          <Text style={{fontSize: 30, marginTop: 5, marginRight: 15}}>
-            {this.props.extraData.email}
-          </Text>
-          <TouchableOpacity style={styles.button} onPress={this.signOutUser}>
-            <Text>Logout</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <TextInput
-            placeholder="Add new Todo"
-            value={this.state.presentToDo}
-            style={styles.textInput}
-            onSubmitEditing={this.addNewTodo}
-            onChangeText={(e) => {
-              this.setState({
-                presentToDo: e,
-              });
-            }}></TextInput>
-          <View style={styles.inputSection}>
+      <View style={{flex: 1}}>
+        <ScrollView
+          style={styles.contentContainerStyle}
+          stickyHeaderIndices={[0]}>
+          <View
+            style={{
+              flexDirection: 'column',
+              height: 150,
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'black',
+            }}>
+            <TextInput
+              placeholderTextColor="white"
+              underlineColorAndroid="white"
+              placeholder="Add new Todo"
+              value={this.state.presentToDo}
+              style={styles.textInput}
+              onSubmitEditing={this.addNewTodo}
+              onChangeText={(e) => {
+                this.setState({
+                  presentToDo: e,
+                });
+              }}></TextInput>
             <Button
-              title="Add new To do item"
+              title="할일 추가"
               onPress={this.addNewTodo}
               color="lightgreen"
-              style={{flex: 1, margin: '50'}}></Button>
-
-            <Button
-              style={{flex: 1}}
-              title="Clear All todos"
-              onPress={this.clearAllTodos}
-              color="red"
-            />
+              style={{width: 70, height: 200}}></Button>
           </View>
 
-          <View>
+          <View
+            style={{
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 10,
+            }}>
             {todosKeys.length > 0 ? (
               todosKeys.map((key) => (
                 <TodoItem key={key} id={key} todoItem={this.state.todos[key]} />
@@ -147,7 +150,7 @@ class HomeScreen extends React.Component {
             )}
           </View>
         </ScrollView>
-      </>
+      </View>
     );
   }
 }

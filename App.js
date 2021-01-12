@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {LoginScreen, HomeScreen, RegistrationScreen} from './src/screens';
@@ -62,11 +62,66 @@ export default function App() {
     );
   }
 
+  async function signOutUser() {
+    console.log('logout button pushed !');
+    try {
+      await firebase.auth().signOut();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  function LogoTitle() {
+    return (
+      <View
+        style={{
+          alignItems: 'center',
+          flexDirection: 'row',
+        }}>
+        <Image
+          style={{width: 40, height: 40, borderRadius: 20}}
+          source={require('./assets/loading4.gif')}
+        />
+        <Text style={{color: 'white', fontSize: 20, marginLeft: 10}}>
+          {user?.email}
+        </Text>
+
+        <View style={{position: 'absolute', right: 0}}>
+          <TouchableOpacity
+            style={{
+              height: 40,
+              borderRadius: 5,
+              backgroundColor: '#788eec',
+              width: 70,
+              alignItems: 'center',
+              justifyContent: 'center',
+              // marginBottom: 50,
+            }}
+            onPress={signOutUser}>
+            <Text style={{color: 'white'}}>로그아웃</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
-          <Stack.Screen name="Home">
+          <Stack.Screen
+            name="Home"
+            options={{
+              title: 'My home',
+              headerStyle: {
+                backgroundColor: '#f4da6c',
+              },
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+              headerTintColor: '#fff',
+              headerTitle: (props) => <LogoTitle {...props} />,
+            }}>
             {(props) => <HomeScreen {...props} extraData={user} />}
           </Stack.Screen>
         ) : (
