@@ -50,7 +50,7 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
               opacity: 0.2,
               marginRight: 5,
             }}
-            source={require('../../../assets/cat.jpg')}
+            source={require('../../../assets/cat_icon_138789.png')}
           />
         }
         uncheckedIcon={
@@ -62,7 +62,7 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
               opacity: 1,
               marginRight: 5,
             }}
-            source={require('../../../assets/cat.jpg')}
+            source={require('../../../assets/cat_icon_138789.png')}
           />
         }
         checkedColor="#f4da6c"

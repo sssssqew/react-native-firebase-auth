@@ -82,7 +82,7 @@ export default function App() {
           style={{width: 40, height: 40, borderRadius: 20}}
           source={require('./assets/loading4.gif')}
         />
-        <Text style={{color: 'white', fontSize: 20, marginLeft: 10}}>
+        <Text style={{color: 'black', fontSize: 20, marginLeft: 10}}>
           {user?.email}
         </Text>
 
