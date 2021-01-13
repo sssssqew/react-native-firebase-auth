@@ -46,10 +46,13 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
             style={{
               width: 30,
               height: 30,
-              // borderRadius: 15,
-              opacity: 0.2,
+              borderRadius: 15,
+              opacity: 0.1,
               marginRight: 5,
+              backgroundColor: '#f4da6c',
+              padding: 15,
             }}
+            tintColor="black"
             source={require('../../../assets/cat_icon_138789.png')}
           />
         }
@@ -58,10 +61,13 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
             style={{
               width: 30,
               height: 30,
-              // borderRadius: 15,
+              borderRadius: 15,
               opacity: 1,
               marginRight: 5,
+              backgroundColor: '#f4da6c',
+              padding: 15,
             }}
+            tintColor="black"
             source={require('../../../assets/cat_icon_138789.png')}
           />
         }
@@ -69,7 +75,7 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
         checked={doneState}
         onPress={onCheck}
         title={
-          <Text style={[styles.todoText, {opacity: doneState ? 0.2 : 1}]}>
+          <Text style={[styles.todoText, {opacity: doneState ? 0.1 : 1}]}>
             {name}
           </Text>
         }
