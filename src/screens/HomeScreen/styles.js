@@ -41,6 +41,8 @@ export default StyleSheet.create({
     marginRight: 10,
     minWidth: '50%',
     textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   contentContainerStyle: {
     flex: 1,

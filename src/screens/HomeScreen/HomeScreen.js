@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  Image,
 } from 'react-native';
-import CheckBox from 'react-native-check-box';
+import {CheckBox} from 'react-native-elements';
 import styles from './styles';
 import {firebase} from '../../firebase/config';
 
@@ -33,13 +34,46 @@ const TodoItem = ({todoItem: {todoItem: name, done}, id}) => {
   return (
     <View style={styles.todoItem}>
       <CheckBox
-        checkboxColor="skyblue"
-        isCheckd={doneState}
-        onClick={onCheck}
+        containerStyle={{
+          backgroundColor: 'transparent',
+          borderWidth: 0,
+          marginTop: 5,
+          padding: 0,
+          marginRight: 5,
+        }}
+        checkedIcon={
+          <Image
+            style={{
+              width: 30,
+              height: 30,
+              // borderRadius: 15,
+              opacity: 0.2,
+              marginRight: 5,
+            }}
+            source={require('../../../assets/cat.jpg')}
+          />
+        }
+        uncheckedIcon={
+          <Image
+            style={{
+              width: 30,
+              height: 30,
+              // borderRadius: 15,
+              opacity: 1,
+              marginRight: 5,
+            }}
+            source={require('../../../assets/cat.jpg')}
+          />
+        }
+        checkedColor="#f4da6c"
+        checked={doneState}
+        onPress={onCheck}
+        title={
+          <Text style={[styles.todoText, {opacity: doneState ? 0.2 : 1}]}>
+            {name}
+          </Text>
+        }
       />
-      <Text style={[styles.todoText, {opacity: doneState ? 0.2 : 1}]}>
-        {name}
-      </Text>
     </View>
   );
 };
